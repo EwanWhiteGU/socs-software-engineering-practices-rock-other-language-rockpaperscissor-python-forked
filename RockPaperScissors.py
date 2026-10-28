@@ -2,6 +2,10 @@ import random
 
 from ConfigFromFile import get_config
 
+def getName():
+    name = input("Enter your name: ")
+    return name
+
 def display(message):
     print(message)
 
@@ -11,11 +15,11 @@ def get_input_string(message):
 def get_input_int(message):
     return int(get_input_string(message))
 
-def determine_winner(player, computer):
+def determine_winner(player, computer, name):
     if player == computer:
         result = "Draw"
     elif (player + 1)%3 == computer:
-        result = "Player wins"
+        result = name + " wins"
     elif (computer + 1)%3 == player:
         result = "Computer Wins"
     return result
@@ -74,12 +78,14 @@ def play():
     player = get_user_choice(weapon)
     while player in [0, 1, 2]:
         computer = get_computer_choice(weapon)
-        result = determine_winner(player, computer)
+        result = determine_winner(player, computer, name)
         display(result)
         player = get_user_choice(weapon)
 
 if __name__ == "__main__":
+    name = getName()
     play()
+
 
 
 
